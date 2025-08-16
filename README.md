@@ -1,29 +1,57 @@
-# TrafficIQ (Mumbai) – Smart Urban Traffic Optimization MVP
+# TrafficIQ Mumbai – Smart Urban Traffic Optimization Platform
 
-Minimal, presentation‑ready MVP focused on three core capabilities for Mumbai urban traffic ops:
+TrafficIQ is an extensible urban traffic intelligence platform for the Mumbai network. It currently delivers end‑to‑end functionality across core operational, analytical, and economic decision areas while providing clear seams for advanced data + ML evolution.
 
-1. Congestion Forecast (current + hourly day profile)
-2. Signal Timing Optimization (cycle length & green split suggestion)
-3. Economic Impact & ROI (savings, payback, priority score)
+## Core Functional Domains (Current)
 
-> This repo currently contains two folders:
->
-> - `trafficiq-mumbai/` – the cleaned, interview‑oriented 3‑feature MVP (primary focus)
-> - `mumbai-traffic-optimizer/` – earlier broader prototype scaffold (not required for the MVP demo)
+1. Congestion Intelligence
+
+- Point prediction with hourly day profile
+- Contributing factor transparency
+
+2. Signal Operations
+
+- Cycle length derivation (Webster-inspired)
+- Directional green split recommendations + visualization
+
+3. Economic & Strategic Evaluation
+
+- ROI, savings estimation, payback period
+- Priority scoring heuristic for project triage
+
+## Repository Modules
+
+- `trafficiq-mumbai/` – Primary maintained implementation (production‑style layout: FastAPI backend + React client)
+- `mumbai-traffic-optimizer/` – Earlier broader prototype / sandbox (retained for reference & experimentation)
 
 ---
 
-## ️🎯 Why This MVP Exists
+## ️🎯 Project Vision
 
-Hiring / demo contexts usually value: clear scope, fast spin‑up, visible results, and an extensible path to “real” intelligence later. This MVP shows end‑to‑end flow (frontend ⇄ API ⇄ simple heuristics) while deliberately keeping models and data light.
+Deliver a modular, data‑oriented platform that can progress from deterministic heuristics to adaptive, data‑driven control and planning intelligence—without rewriting foundational layers. Initial release emphasizes clarity, correctness, UX polish, and explainability.
 
 ---
 
-## 🧱 Architecture (MVP Folder `trafficiq-mumbai/`)
+## 🧱 High‑Level Architecture (Active Module `trafficiq-mumbai/`)
 
-Frontend (React + Recharts) → FastAPI Backend (Python 3.8) → Heuristic Engines (in‑memory)
+```
+┌────────────────────┐        ┌──────────────────────────┐
+│ React Frontend     │  HTTP  │ FastAPI Service Layer    │
+│  (Recharts, Axios) │ <────> │  (Routing + Validation)  │
+└─────────┬──────────┘        └──────────┬───────────────┘
+       │                               │
+       │                               ▼
+       │                 ┌──────────────────────────┐
+       │                 │ Domain Heuristics        │
+       │                 │  (Congestion | Signals | │
+       │                 │   Economic Models)       │
+       │                 └──────────┬───────────────┘
+       │                               │ (future: data / ML services)
+       ▼                               ▼
+  User Interaction           (Pluggable persistence + model layer roadmap)
+```
 
-No database, queues, or external services for simplicity. All responses are deterministic based on inputs.
+Current phase intentionally remains stateless & in‑memory to prioritize iteration speed; architecture is layered for later integration of: persistence (Postgres/Time‑Series DB), real‑time ingestion, ML microservices, and optimization engines.
 
 ---
 
@@ -46,11 +74,12 @@ TrafficIQ/
 
 ---
 
-## ⚙️ Tech Stack (MVP)
+## ⚙️ Tech Stack
 
-Backend: FastAPI, Pydantic (heuristic logic – no ML yet)
-Frontend: React (CRA/Vite style), Recharts for charts, Axios for API calls
-Language Targets: Python 3.8+, Node 18+
+Backend: FastAPI, Pydantic (typed request/response contracts)  
+Frontend: React, Recharts (data viz), Axios (API abstraction)  
+Languages / Runtime Targets: Python 3.8+, Node 18+  
+Design Emphasis: Deterministic logic first → smooth pathway to ML injection points.
 
 ---
 
@@ -82,13 +111,13 @@ Visit: http://localhost:3000 (or the port your dev server reports)
 
 ---
 
-## 📡 API (MVP Endpoints)
+## 📡 API Surface (Current Active Set)
 
-| Purpose                       | Method | Path                              | Query / Body Params                                   |
-| ----------------------------- | ------ | --------------------------------- | ----------------------------------------------------- | ---- | --- | ------ |
-| Congestion prediction (point) | GET    | `/api/predict/{route_id}`         | hour (0–23), weather (clear                           | rain | fog | storm) |
-| Signal timing optimization    | GET    | `/api/optimize/{intersection_id}` | north_flow, south_flow, east_flow, west_flow (veh/hr) |
-| Economic ROI calculator       | POST   | `/api/calculate-roi`              | JSON body: project_type, location, project_cost       |
+| Domain     | Method | Path                              | Parameters                                                           |
+| ---------- | ------ | --------------------------------- | -------------------------------------------------------------------- | ---- | ----------- |
+| Congestion | GET    | `/api/predict/{route_id}`         | Query: `hour` (0–23), `weather` (clear                               | rain | heavy_rain) |
+| Signals    | GET    | `/api/optimize/{intersection_id}` | Query: `north_flow`, `south_flow`, `east_flow`, `west_flow` (veh/hr) |
+| Economics  | POST   | `/api/calculate-roi`              | JSON: `project_type`, `location`, `project_cost`                     |
 
 ### Example Requests
 
@@ -121,7 +150,7 @@ Content-Type: application/json
 
 ---
 
-## 🧠 Heuristic Logic Summary
+## 🧠 Domain Logic Summary
 
 - Congestion: Base route factor × hourly pattern × weather multiplier.
 - Signal Optimization: Simplified Webster cycle + proportional green splits by approach volume.
@@ -140,7 +169,7 @@ These are intentionally transparent (good for interviews) and are natural insert
 
 ---
 
-## 🔄 Extending Roadmap (Suggested)
+## 🔄 Roadmap (Planned Evolution)
 
 | Area     | Next Step                                                            |
 | -------- | -------------------------------------------------------------------- |
@@ -153,7 +182,7 @@ These are intentionally transparent (good for interviews) and are natural insert
 
 ---
 
-## ✅ Development Scripts
+## ✅ Development Practices
 
 (Optional) add to `package.json` or a Makefile later:
 
@@ -162,13 +191,13 @@ These are intentionally transparent (good for interviews) and are natural insert
 
 ---
 
-## 🧪 Testing (Future)
+## 🧪 Testing Strategy (Planned)
 
 Suggest: FastAPI endpoint tests (pytest + httpx), component tests (Jest + React Testing Library) once logic stabilizes.
 
 ---
 
-## 🤝 Contributing (Internal / Future)
+## 🤝 Contributing
 
 1. Fork (or feature branch)
 2. Create branch: `feature/<short-desc>`
@@ -177,7 +206,7 @@ Suggest: FastAPI endpoint tests (pytest + httpx), component tests (Jest + React 
 
 ---
 
-## 📦 Docker (Optional Sketch)
+## 📦 Containerization
 
 A simple compose could run backend + frontend; legacy folder already has an example `docker-compose.yml` you can adapt.
 
@@ -228,17 +257,17 @@ git remote set-url origin https://github.com/<your-username>/TrafficIQ-Mumbai.gi
 
 ---
 
-## 🧾 Interview Talking Points (Cheat Sheet)
+## 📌 Architectural Talking Points
 
-- Clear MVP boundaries → prevents scope creep.
-- Deterministic heuristics → explainable + placeholders for ML.
-- Frontend separation → can be swapped for native/mobile later.
-- Extensible data model → easy to introduce persistence & analytics.
-- Performance: All in‑memory; cold start <1s; ideal for demo.
+- Layered design → API contracts stable while internals evolve.
+- Deterministic heuristics provide baselines + interpretability.
+- Clear insertion points for ML (replace congestion + optimization modules).
+- Frontend decoupled: enables future native/mobile or dashboard variants.
+- Low operational footprint now; accelerates experimentation.
 
 ---
 
-## 🙋 FAQ (Anticipated)
+## 🙋 FAQ
 
 **Q:** Why no database now?  
 **A:** Keeps demo friction low; memory model is enough for deterministic showcase.
@@ -251,4 +280,4 @@ git remote set-url origin https://github.com/<your-username>/TrafficIQ-Mumbai.gi
 
 ---
 
-Feel free to adapt / trim sections based on the target audience (recruiter vs. engineer). Good luck with the demo!
+Feel free to tailor wording per stakeholder (operations, engineering leadership, data science). Contributions & issue discussions welcome.
