@@ -1,0 +1,68 @@
+{
+  "routes": [
+    {
+      "id": "western_express_highway",
+      "name": "Western Express Highway",
+      "length_km": 25.4,
+      "base_congestion": 6,
+      "peak_multiplier": 1.5,
+      "weather_sensitivity": 0.3
+    },
+    {
+      "id": "eastern_express_highway",
+      "name": "Eastern Express Highway",
+      "length_km": 23.8,
+      "base_congestion": 5,
+      "peak_multiplier": 1.4,
+      "weather_sensitivity": 0.25
+    },
+    {
+      "id": "sion_panvel_highway",
+      "name": "Sion-Panvel Highway",
+      "length_km": 29.2,
+      "base_congestion": 7,
+      "peak_multiplier": 1.6,
+      "weather_sensitivity": 0.35
+    },
+    {
+      "id": "lbs_marg",
+      "name": "LBS Marg",
+      "length_km": 18.1,
+      "base_congestion": 6,
+      "peak_multiplier": 1.5,
+      "weather_sensitivity": 0.28
+    },
+    {
+      "id": "sv_road",
+      "name": "SV Road",
+      "length_km": 20.0,
+      "base_congestion": 5,
+      "peak_multiplier": 1.4,
+      "weather_sensitivity": 0.22
+    },
+    {
+      "id": "marine_drive",
+      "name": "Marine Drive",
+      "length_km": 3.6,
+      "base_congestion": 4,
+      "peak_multiplier": 1.3,
+      "weather_sensitivity": 0.2
+    },
+    {
+      "id": "worli_sea_link",
+      "name": "Worli Sea Link",
+      "length_km": 5.6,
+      "base_congestion": 3,
+      "peak_multiplier": 1.2,
+      "weather_sensitivity": 0.4
+    },
+    {
+      "id": "bandra_kurla_complex",
+      "name": "Bandra-Kurla Complex",
+      "length_km": 4.2,
+      "base_congestion": 7,
+      "peak_multiplier": 1.7,
+      "weather_sensitivity": 0.33
+    }
+  ]
+}
