@@ -14,11 +14,6 @@ TrafficIQ is an extensible urban traffic intelligence platform for the Mumbai ne
 - Cycle length derivation (Webster-inspired)
 - Directional green split recommendations + visualization
 
-3. Economic & Strategic Evaluation
-
-- ROI, savings estimation, payback period
-- Priority scoring heuristic for project triage
-
 ## Repository Modules
 
 - `trafficiq-mumbai/` – Primary maintained implementation (production‑style layout: FastAPI backend + React client)
