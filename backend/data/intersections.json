@@ -1,0 +1,39 @@
+{
+  "intersections": [
+    {
+      "id": "bandra_linking_road",
+      "name": "Bandra Linking Road Junction",
+      "current_cycle_time": 120,
+      "current_green_splits": { "NS": 50, "EW": 40, "left_turn": 30 },
+      "average_daily_vehicles": 45000
+    },
+    {
+      "id": "andheri_subway",
+      "name": "Andheri Subway",
+      "current_cycle_time": 100,
+      "current_green_splits": { "NS": 45, "EW": 35, "left_turn": 20 },
+      "average_daily_vehicles": 38000
+    },
+    {
+      "id": "powai_junction",
+      "name": "Powai Junction",
+      "current_cycle_time": 110,
+      "current_green_splits": { "NS": 48, "EW": 42, "left_turn": 20 },
+      "average_daily_vehicles": 32000
+    },
+    {
+      "id": "worli_naka",
+      "name": "Worli Naka",
+      "current_cycle_time": 115,
+      "current_green_splits": { "NS": 52, "EW": 38, "left_turn": 25 },
+      "average_daily_vehicles": 40000
+    },
+    {
+      "id": "dadar_tt_circle",
+      "name": "Dadar TT Circle",
+      "current_cycle_time": 105,
+      "current_green_splits": { "NS": 50, "EW": 35, "left_turn": 20 },
+      "average_daily_vehicles": 41000
+    }
+  ]
+}
