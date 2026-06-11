@@ -16,7 +16,7 @@ export default function Layout({ children }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div className="app-title">TrafficIQ Mumbai</div>
           <div className="tagline">
-            Congestion Forecast & Signal Optimization for Smarter Traffic Management
+            Congestion Forecast • Signal Optimization • Infrastructure ROI
           </div>
         </div>
         <div
@@ -77,7 +77,7 @@ export default function Layout({ children }) {
       </header>
       {children}
       <div className="footer-note" role="contentinfo">
-        © {new Date().getFullYear()} TrafficIQ Mumbai
+        © {new Date().getFullYear()} TrafficIQ Mumbai · Demo (synthetic data)
       </div>
     </div>
   );

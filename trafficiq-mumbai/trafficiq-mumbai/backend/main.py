@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
-from models import predict_congestion, optimize_signal_timing
+from models import predict_congestion, optimize_signal_timing, calculate_infrastructure_roi, ROIRequest
 
 app = FastAPI(title="TrafficIQ Mumbai MVP", version="0.1.0")
 
@@ -31,10 +31,17 @@ def api_optimize(intersection_id: str, north_flow: int, south_flow: int, east_fl
         raise HTTPException(status_code=404, detail=str(e))
 
 
+@app.post('/api/calculate-roi')
+def api_calculate_roi(req: ROIRequest):
+    try:
+        return calculate_infrastructure_roi(req.project_type, req.location, req.project_cost)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
 
 @app.get('/')
 def root():
-    return {"message": "TrafficIQ Mumbai MVP running", "endpoints": ["/api/predict/{route_id}", "/api/optimize/{intersection_id}"]}
+    return {"message": "TrafficIQ Mumbai MVP running", "endpoints": ["/api/predict/{route_id}", "/api/optimize/{intersection_id}", "/api/calculate-roi"]}
 
 
 @app.get('/api/health')

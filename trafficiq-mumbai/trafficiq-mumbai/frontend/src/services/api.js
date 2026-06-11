@@ -37,7 +37,10 @@ export const optimizeSignal = async (intersection_id, flows) => {
   });
   return data;
 };
-// ROI API removed from backend; calculateRoi intentionally omitted per project scope.
+export const calculateRoi = async (payload) => {
+  const { data } = await api.post(`/api/calculate-roi`, payload);
+  return data;
+};
 export const predictDayProfile = async (route_id, weather) => {
   const hours = [...Array(24).keys()];
   const results = await Promise.all(
